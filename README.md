@@ -9,7 +9,7 @@ ChrispyBot is a bot made by Discord Developer Tools with all its functionalities
 2. [Setup](#setup)
 3. [Instructions](#instructions)
 4. [Example](#example)
-5. [To Do] (#todo)
+5. [To Do](#todo)
 
 ## Technologies<a name="technologies"></a>
 This project is created using: 
