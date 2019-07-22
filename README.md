@@ -25,6 +25,8 @@ npm install && node chrispybot.js
 
 ## Instructions <a name="instructions"></a>
 
+[Demo](https://youtu.be/L_vPl_6cYd4)
+
 ### Current Functionalities:
 
 |Function| Example Chat Input |
