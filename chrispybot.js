@@ -23,7 +23,7 @@ chrispyBotClient.on("message", (message) => {
       .catch(console.error)
       return;
     } else {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=OpenWeatherAPIKeyHeERE`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=OpenWeatherAPIkey goes here`)
       .then(response => {
         return response.json()
       })
@@ -62,7 +62,15 @@ chrispyBotClient.on("message", (message) => {
 
 
   //next func
+  if (message.content.includes("_yelp") && message.author.bot === false) {
+    message.channel.send("Yelp Functionalities are in the works!")
+  }
+
+  if (message.content.includes("_youtube") && message.author.bot === false) {
+    message.channel.send("Youtube Functionalities are in the works!")
+  }
+
 })
 
 
-chrispyBotClient.login("Discord bot token here");
+chrispyBotClient.login("Discord Token goes here");
