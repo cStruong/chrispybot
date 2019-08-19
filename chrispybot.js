@@ -23,7 +23,7 @@ chrispyBotClient.on("message", (message) => {
       .catch(console.error)
       return;
     } else {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=OpenWeatherAPIkey goes here`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=Put OpenWeatherAPI Key Here`)
       .then(response => {
         return response.json()
       })
@@ -39,23 +39,27 @@ chrispyBotClient.on("message", (message) => {
           "Clear": "☀️"
         }
 
-        const currentWeather = parsedWeather.weather[0].main
+        if (parsedWeather.cod === '404') {
+          message.channel.send("`This zip code does not exist or there is no information available.`")
+        } else {
+          const currentWeather = parsedWeather.weather[0].main
 
-        message.channel.send({embed: {
-            color: 3447003,
-            fields: [{
-                name: `🎯Location: ${parsedWeather.name}, ${parsedWeather.sys.country}`,
-                value: `
-                  ${weatherPics[currentWeather]}Forecast: ${currentWeather}, ${parsedWeather.weather[0].description}
-                  🌡 Current: ${(Math.round(((parsedWeather.main.temp - 273.15) * 9/5 + 32 )))}° F
-                  🔺 High: ${(Math.round(((parsedWeather.main.temp_max - 273.15) * 9/5 + 32 )))}° F
-                  🔻 Low: ${(Math.round(((parsedWeather.main.temp_min - 273.15) * 9/5 + 32 )))}° F
-                `
-              }
-            ],
-            timestamp: new Date()
-          }
-        })
+          message.channel.send({embed: {
+              color: 3447003,
+              fields: [{
+                  name: `🎯Location: ${parsedWeather.name}, ${parsedWeather.sys.country}`,
+                  value: `
+                    ${weatherPics[currentWeather]}Forecast: ${currentWeather}, ${parsedWeather.weather[0].description}
+                    🌡 Current: ${(Math.round(((parsedWeather.main.temp - 273.15) * 9/5 + 32 )))}° F
+                    🔺 High: ${(Math.round(((parsedWeather.main.temp_max - 273.15) * 9/5 + 32 )))}° F
+                    🔻 Low: ${(Math.round(((parsedWeather.main.temp_min - 273.15) * 9/5 + 32 )))}° F
+                  `
+                }
+              ],
+              timestamp: new Date()
+            }
+          })
+        }
       })
     }
   }
@@ -73,4 +77,4 @@ chrispyBotClient.on("message", (message) => {
 })
 
 
-chrispyBotClient.login("Discord Token goes here");
+chrispyBotClient.login("Put Discord Bot Token Here");
