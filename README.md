@@ -31,7 +31,12 @@ npm install && node chrispybot.js
 |-|-|
 | Get current Weather | _weather *zipcode* (example: _weather 11220) |
 
-## Example <a name="example"></a>
+## Examples <a name="example"></a>
+
+#### [Demo Video](https://youtu.be/L_vPl_6cYd4)
+
+
+![Screenshot](./assets/screenshot.png)
 
 ## To Do <a name="todo"></a>
 * Add Music Playing function with full playlist and music player capabilities via Youtube API.
