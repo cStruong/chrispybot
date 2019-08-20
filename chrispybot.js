@@ -68,8 +68,9 @@ chrispyBotClient.on("message", (message) => {
   //next func
   if (message.content.includes("_yelp") && message.author.bot === false) {
     message.channel.send("Yelp Functionalities are in the works!")
-    let queryStr = message.content.slice(6);
-    let location = queryStr.split(" ").slice(-1);
+    let query = message.content.slice(6);
+    let location = query.split(" ").slice(-1);
+    let queryStr = query.split(" ").pop(-1).join(" ");
     fetch(`https://api.yelp.com/v3/businesses/search?&location=${location}`, {
       headers: {
         "Content-Type": "application/json",
