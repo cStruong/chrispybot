@@ -23,7 +23,7 @@ chrispyBotClient.on("message", (message) => {
       .catch(console.error)
       return;
     } else {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=OpenWeather API Key goes here`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=f3fd398452f635ebe38ebbbb1141638e`)
       .then(response => {
         return response.json()
       })
@@ -68,12 +68,15 @@ chrispyBotClient.on("message", (message) => {
   //yelp function
   if (message.content.includes("_yelp") && message.author.bot === false) {
     let query = message.content.slice(6);
-    let location = query.split(" ").slice(-1);
-    let queryStr = query.split(" ").pop(-1).join(" ");
-    fetch(`https://api.yelp.com/v3/businesses/search?&location=${location}`, {
+    let location = query.split("@").slice(-1);
+    let queryStr = query.split("@").slice(0, -1).join(" ");
+    console.log(query);
+    console.log(location);
+    console.log(queryStr);
+    fetch(`https://api.yelp.com/v3/businesses/search?&term=${query}+&location=${location}`, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer Yelp Key Goes Here"
+        "Authorization": "Bearer LgCvM-b2FKmq5UU9Ku-V4gryKQyzNs0KgC4UHlZH_FG2j8o81fpNR3T-Rw_zmqEHRPu6DohhYl0iAQLyZw5KTxPy36tqACMagCo800HhYHDTjKBxGwXJLIvy3483XXYx"
       }
     })
     .then(response => {
@@ -103,4 +106,4 @@ chrispyBotClient.on("message", (message) => {
 })
 
 
-chrispyBotClient.login("Discord Token goes here");
+chrispyBotClient.login("NTY3MzE5OTQzNDA2NjgyMTIy.XLR8yQ.p8-TGaDhHs9ptqNLOn15fR7g1Pc");
