@@ -84,9 +84,12 @@ chrispyBotClient.on("message", (message) => {
       //perhaps for each inside embed is a field for each business
       message.channel.send({embed:{
         color: 3447003,
+
         fields:[{
-          name: parsedJSON.businesses.forEach(business => {
-            business.name
+          name: `Results for ${queryStr} at ${location}` ,
+          value:
+          parsedJSON.businesses.forEach(business => {
+            "Business: " + business.name;
         })}]
       }
       })
