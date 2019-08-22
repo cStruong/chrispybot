@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 //initializes a new client object (from discord.js)
 const chrispyBotClient = new Discord.Client();
 const fetch = require('node-fetch');
-
+const dotenv = require('dotenv').config();
 
 //listening for a "ready" event before running its block.
 chrispyBotClient.on("ready", () => {
@@ -23,7 +23,7 @@ chrispyBotClient.on("message", (message) => {
       .catch(console.error)
       return;
     } else {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&APPID=${process.env.OPENWEATHER_KEY}`)
       .then(response => {
         return response.json()
       })
@@ -70,13 +70,11 @@ chrispyBotClient.on("message", (message) => {
     let query = message.content.slice(6);
     let location = query.split("@").slice(-1);
     let queryStr = query.split("@").slice(0, -1).join(" ");
-    console.log(query);
-    console.log(location);
-    console.log(queryStr);
+
     fetch(`https://api.yelp.com/v3/businesses/search?&term=${query}+&location=${location}`, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer "
+        "Authorization": `Bearer ${process.env.YELP_KEY}`
       }
     })
     .then(response => {
@@ -106,4 +104,4 @@ chrispyBotClient.on("message", (message) => {
 })
 
 
-chrispyBotClient.login("");
+chrispyBotClient.login(`${process.env.DISCORD_TOKEN}`);
