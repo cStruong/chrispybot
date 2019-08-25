@@ -71,7 +71,7 @@ chrispyBotClient.on("message", (message) => {
     let location = query.split("@").slice(-1);
     let queryStr = query.split("@").slice(0, -1).join(" ");
 
-    fetch(`https://api.yelp.com/v3/businesses/search?&term=${query}+&location=${location}`, {
+    fetch(`https://api.yelp.com/v3/businesses/search?&term=${query}+&location=${location}+&limit=5`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.YELP_KEY}`
@@ -85,8 +85,13 @@ chrispyBotClient.on("message", (message) => {
       //perhaps for each inside embed is a field for each business
       let fieldsArray = []
       parsedJSON.businesses.map(business => {
-        fieldsArray.push({name: business.name,
-         value: business.alias
+        fieldsArray.push({name: `${fieldsArray.length + 1}.`,
+         value:
+         `
+         Name: [${business.name}](${business.url})
+         Rating: ${business.rating} / 5
+         Price: ${!!business.price ? business.price : "Unknown"}
+         `
         })
       })
       message.channel.send({embed:{
@@ -97,6 +102,7 @@ chrispyBotClient.on("message", (message) => {
     })
   }
 
+  //youtube function
   if (message.content.includes("_youtube") && message.author.bot === false) {
     message.channel.send("Youtube Functionalities are in the works!")
   }
