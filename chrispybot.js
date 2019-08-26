@@ -90,7 +90,7 @@ chrispyBotClient.on("message", (message) => {
          `
          Name: [${business.name}](${business.url})
          Rating: ${business.rating} / 5
-         Price: ${!!business.price ? business.price : "Unknown"}
+         Price: ${!!business.price ? business.price : "No Price Data"}
          `
         })
       })
