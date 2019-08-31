@@ -83,6 +83,9 @@ chrispyBotClient.on("message", (message) => {
     .then(parsedJSON => {
       console.log(parsedJSON);
       //perhaps for each inside embed is a field for each business
+      //store all called somewhere, 
+      //look into discord js edit message 
+      //also awaitReactions and clear reactions, maybe even reaction counter
       let fieldsArray = []
       parsedJSON.businesses.map(business => {
         fieldsArray.push({name: `${fieldsArray.length + 1}.`,
