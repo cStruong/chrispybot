@@ -77,9 +77,9 @@ chrispyBotClient.on("message", (message) => {
         "Authorization": `Bearer ${process.env.YELP_KEY}`
       }
     })
-    .then(response => {
-      return response.json();
-    })
+    .then(response => 
+      response.json()
+    )
     .then(parsedJSON => {
       console.log(parsedJSON);
       //perhaps for each inside embed is a field for each business
@@ -99,15 +99,22 @@ chrispyBotClient.on("message", (message) => {
       })
       message.channel.send({embed:{
         color: 3447003,
-        description: `Results for ${queryStr} at ${location}`,
+        description: `Results for ${queryStr} ${location}`,
         fields: fieldsArray
       }})
+      .then(message => {
+        message.react("➡")
+      })
     })
   }
 
   //youtube function
-  if (message.content.includes("_youtube") && message.author.bot === false) {
-    message.channel.send("Youtube Functionalities are in the works!")
+  if (message.content.includes("timothy") && message.author.bot === false) {
+    message.channel.send("Tim likes feet")
+  }
+
+  if (message.content.toLowerCase().includes("patrick") && message.author.bot === false) {
+    message.channel.send("pat future NYPD sign these documents")
   }
 
 })
